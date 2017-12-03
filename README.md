@@ -1,8 +1,8 @@
 # Hackathon-IDL
 
-This website is under construction!!!
+This application is under construction!!!
 
-To acess this application-
+To access this application-
 
 1. Clone the project.
 2. Install NodeJS (From https://nodejs.org/en/).

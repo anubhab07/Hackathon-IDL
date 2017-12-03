@@ -1,0 +1,35 @@
+[{
+    "orderNumber": 1,
+    "lastUpdated": "",
+    "source": {
+        "area": "Jaydev Vihar, BBSR",
+        "latitude": 20.295971,
+        "longitude": 85.825023,
+        "status": "Order dispatched"
+    },
+    "intermediateLocations": [{
+        "area": "Nalco Square, BBSR",
+        "latitude": 20.314481,
+        "longitude": 85.820507,
+        "status": "In Transit"
+    }, {
+        "area": "Damana, BBSR",
+        "latitude": 20.332786,
+        "longitude": 85.822116,
+        "status": "In Transit"
+    }, {
+        "area": "Patia Chowk, BBSR",
+        "latitude": 20.342284,
+        "longitude": 85.822367,
+        "status": "In Transit"
+    }],
+    "destination": {
+        "area": "Infosys Patia, BBSR",
+        "latitude": 20.341813,
+        "longitude": 85.804442,
+        "status": "Delivered"
+
+    },
+    "zoom": 13
+
+}]
