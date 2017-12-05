@@ -3,14 +3,14 @@
     "lastUpdated": "",
     "source": {
         "area": "Jaydev Vihar, BBSR",
-        "latitude": 20.295971,
-        "longitude": 85.825023,
+        "latitude": 20.296446,
+        "longitude": 85.824245,
         "status": "Order dispatched"
     },
     "intermediateLocation": {
         "area": "Nalco Square, BBSR",
-        "latitude": 20.314481,
-        "longitude": 85.820507,
+        "latitude": 20.315054,
+        "longitude": 85.820233,
         "status": "In Transit"
     },
     "destination": {
@@ -18,7 +18,6 @@
         "latitude": 20.341813,
         "longitude": 85.804442,
         "status": "Delivered"
-
     },
     "zoom": 12
 

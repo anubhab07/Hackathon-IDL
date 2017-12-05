@@ -1,12 +1,22 @@
 <div class="container">
     <h1>{{title}}</h1>
-    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="isScrollWheel" [clickableIcons]="isScrollWheel">
-        <agm-marker [latitude]="source.latitude" [title]="source.status" [longitude]="source.longitude" [openInfoWindow]="!isScrollWheel" [iconUrl]="'../../assets/images/source.png'"></agm-marker>
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false" [clickableIcons]="isScrollWheel">
+        <agm-marker [latitude]="source.latitude" [title]="source.status" [longitude]="source.longitude" [openInfoWindow]="!isScrollWheel" [iconUrl]="'../../assets/images/source.png'">
+            <agm-info-window [disableAutoPan]="false">{{source.status}}</agm-info-window>
+        </agm-marker>
+        <!-- <agm-polyline [geodesic]="true" [polylineDraggable]="true">
+            <agm-polyline-point [latitude]="source.latitude" [longitude]="source.longitude"></agm-polyline-point>
+            <agm-polyline-point [latitude]="intermediateLocation.latitude" [longitude]="intermediateLocation.longitude"></agm-polyline-point>
+        </agm-polyline> -->
+        <div agm-directions [origin]="org" [destination]="inter"></div>
+        <agm-marker *ngIf="intermediateLocation" [latitude]="intermediateLocation.latitude" [longitude]="intermediateLocation.longitude" (markerClick)="displayStatus(intermediateLocation)" [title]="intermediateLocation.status" [iconUrl]="'../../assets/images/inTransit.png'">
+            <agm-info-window [disableAutoPan]="false">{{intermediateLocation.status}}</agm-info-window>
+        </agm-marker>
 
-        <agm-marker *ngIf="intermediateLocation" [latitude]="intermediateLocation.latitude" [longitude]="intermediateLocation.longitude" (markerClick)="displayStatus(intermediateLocation)" [title]="intermediateLocation.status" [iconUrl]="'../../assets/images/inTransit.png'"></agm-marker>
-
-        <agm-marker *ngIf="destination" [latitude]="destination.latitude" [longitude]="destination.longitude" [title]="destination.status" [iconUrl]="'../../assets/images/destination.png'" (mouseOver)="displayStatus(destination)"></agm-marker>
-
+        <agm-marker *ngIf="destination" [latitude]="destination.latitude" [longitude]="destination.longitude" [title]="destination.status" [iconUrl]="'../../assets/images/destination.png'" (mouseOver)="displayStatus(destination)">
+            <agm-info-window [disableAutoPan]="false">{{destination.status}}</agm-info-window>
+        </agm-marker>
+        <div agm-directions [origin]="inter" [destination]="dest" [dotted]="dotted"></div>
         <!-- <agm-marker [latitude]="lat2" [longitude]="lng2"></agm-marker> -->
     </agm-map>
 

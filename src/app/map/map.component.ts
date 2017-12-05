@@ -19,6 +19,10 @@ export class MapComponent implements OnInit {
   isScrollWheel=false
   lat: number = 20.295971;
   lng: number = 85.825023;
+  org={latitude:0,longitude:0};
+  dest={latitude:0,longitude:0};
+  inter={latitude:0,longitude:0};
+  dotted:boolean=true;
 
   lat2: number = 20.314481;
   lng2: number = 85.820507;
@@ -29,7 +33,10 @@ export class MapComponent implements OnInit {
       this.intermediateLocation=this.location.intermediateLocation;
       this.source=this.location.source;
       this.destination=this.location.destination;
-
+      this.org={longitude: this.source.longitude, latitude:this.source.latitude}
+      this.inter={longitude: this.intermediateLocation.longitude, latitude: this.intermediateLocation.latitude}
+      this.dest={longitude: this.destination.longitude, latitude:this.destination.latitude}
+      console.log(this.org,this.dest)
     })
   }
   displayStatus(marker){
