@@ -5,16 +5,32 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { MapLocationService } from './map/map-location.service'
 import { AgmCoreModule } from '@agm/core';
+import { PlaceOrderComponent } from './place-order/place-order.component';
+import {RouterModule} from '@angular/router';
+import { TrackOrderComponent } from './track-order/track-order.component';
+import { CancelOrderComponent } from './cancel-order/cancel-order.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    MapComponent,
+    PlaceOrderComponent,
+    TrackOrderComponent,
+    CancelOrderComponent
   ],
   imports: [
     BrowserModule,AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCsRrsHCNv1yTfK1slvO9UGKTQUv-YY-6M'
-    }),HttpModule
+    }),
+    HttpModule,
+    FormsModule,
+    RouterModule.forRoot([
+      {path:"place-order",component:PlaceOrderComponent},
+      {path:"track-order",component:TrackOrderComponent},
+      {path:"cancel-order",component:CancelOrderComponent},
+      {path:"",redirectTo:"/place-order",pathMatch:"full"}
+    ])
   ],
   providers: [MapLocationService],
   bootstrap: [AppComponent]
