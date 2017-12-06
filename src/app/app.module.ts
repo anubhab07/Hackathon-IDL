@@ -6,13 +6,13 @@ import { MapComponent } from './map/map.component';
 import { MapLocationService } from './map/map-location.service'
 import { AgmCoreModule } from '@agm/core';
 import { MapDirectionDirective } from './map/map-direction.directive';
-
 import { PlaceOrderComponent } from './place-order/place-order.component';
 import {RouterModule} from '@angular/router';
 import { TrackOrderComponent } from './track-order/track-order.component';
 import { CancelOrderComponent } from './cancel-order/cancel-order.component';
 import { FormsModule } from '@angular/forms';
-
+import {PlaceOrderService} from './place-order/place-order.service';
+import {CancelOrderService} from './cancel-order/cancel-order.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +35,7 @@ import { FormsModule } from '@angular/forms';
       {path:"",redirectTo:"/place-order",pathMatch:"full"}
     ])
   ],
-  providers: [MapLocationService],
+  providers: [MapLocationService,PlaceOrderService,CancelOrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
