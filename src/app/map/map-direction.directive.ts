@@ -25,7 +25,11 @@ export class MapDirectionDirective {
         strokeColor: '#0eb7f6',
         strokeOpacity: 0,
         fillOpacity: 0,
-        
+        icons: [{
+          icon: lineSymbol,
+          offset: '0',
+          repeat: '10px'
+      }],
     })
     var rendererOptions = {
       map: map,

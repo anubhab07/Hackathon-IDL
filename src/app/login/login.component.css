@@ -1,0 +1,20 @@
+.ng-valid[required],
+.ng-valid.required {
+    border-left: 5px solid #42A948;
+    /* green */
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
+}
+
+.login-boundary {
+    /* border: 1px solid black; */
+    padding: 10px;
+    margin-top: 50px;
+    /* position: relative; */
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

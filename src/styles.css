@@ -8,3 +8,7 @@ body {
 footer {
     font-size: 0.70rem;
 }
+
+body {
+    font-family: 'Nunito', sans-serif !important;
+}

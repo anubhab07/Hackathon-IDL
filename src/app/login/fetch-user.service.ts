@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs'
-import {Location} from "./location"
+import { User } from "./user"
 import {Http,Response} from "@angular/http";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 @Injectable()
-export class MapLocationService {
-
+export class FetchUserService {
+  auth:boolean;
   constructor(private _http:Http) { }
-  getLocation() :Observable<Location>{
-    return this._http.get("../assets/mockData/mapData.json")
-    .map((res:Response)=>res.json())
-    .do(res=>console.log(res));
+  getUsers() :Observable<User[]>{
+    return this._http.get("../assets/mockData/users.json")
+    .map((res:Response)=>res.json());
   }
 
 }
