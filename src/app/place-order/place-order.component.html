@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row  text-center  order-container"*ngIf="!validOrder">
+    <div class="col-sm-2">
+      <img [src]="imageUrl" ngClass="pizza-image">
+      <div><b>Margherita</b></div>
+    </div>
+    <div class="col-sm-2 text-center vcenter">
+      <div><b>Quantity:</b></div>
+      <div><select ngClass="form-inputs">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      </select></div>
+    </div>
+    <div class="col-sm-3 text-center ">
+      <div><span><b>Delivery Location:</b></span></div>
+      <div>
+        <select ngClass="form-inputs">
+           <option *ngFor="let loc of deliveryLocations">{{loc}}</option>
+          </select>
+      </div>
+    </div>
+    <div class="col-sm-3 text-center ">
+      <div><b>Mobile Number:</b></div>
+      <div><input type="text" ngClass="form-inputs" [(ngModel)]="mobile" /></div>
+    </div>
+    <div class="col-sm-2 text-center ">
+      <button class="btn btn-primary place-order-button" (click)="submitOrder()">
+      Place Order
+    </button>
+    </div>
+  </div>
+  <div class="text-center" *ngIf="orderSubmitted && validOrder">
+  <div class="alert alert-success" >
+    Your order is placed successfully
+  </div>
+  <button class="btn btn-primary"  routerLink="/track-order">Track Order</button>
+  </div>
+  <div class="alert alert-danger" *ngIf="orderSubmitted && !validOrder">
+    Please enter a valid mobile number!
+  </div>
+</div>
