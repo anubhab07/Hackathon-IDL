@@ -7,7 +7,6 @@ import { MapComponent } from './map/map.component';
 import { MapLocationService } from './map/map-location.service'
 import { AgmCoreModule } from '@agm/core';
 import { MapDirectionDirective } from './map/map-direction.directive';
-
 import { PlaceOrderComponent } from './place-order/place-order.component';
 import {RouterModule} from '@angular/router';
 import { TrackOrderComponent } from './track-order/track-order.component';
@@ -17,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { FetchUserService } from './login/fetch-user.service'
 
+import {PlaceOrderService} from './place-order/place-order.service';
+import {CancelOrderService} from './cancel-order/cancel-order.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,15 +33,8 @@ import { FetchUserService } from './login/fetch-user.service'
       apiKey: 'AIzaSyCsRrsHCNv1yTfK1slvO9UGKTQUv-YY-6M'
     }),
     HttpModule,ReactiveFormsModule,FormsModule,routing
-    
-    // RouterModule.forRoot([
-    //   {path:"place-order",component:PlaceOrderComponent},
-    //   {path:"track-order",component:TrackOrderComponent},
-    //   {path:"cancel-order",component:CancelOrderComponent},
-    //   {path:"",redirectTo:"/place-order",pathMatch:"full"}
-    // ])
   ],
-  providers: [MapLocationService,FetchUserService],
+  providers: [MapLocationService,PlaceOrderService,CancelOrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
