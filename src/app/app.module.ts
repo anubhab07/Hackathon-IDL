@@ -17,13 +17,10 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     MapComponent,
-<<<<<<< HEAD
-    MapDirectionDirective
-=======
+    MapDirectionDirective,
     PlaceOrderComponent,
     TrackOrderComponent,
     CancelOrderComponent
->>>>>>> c949df042aafdec32c6894bb2d2740a51e93c675
   ],
   imports: [
     BrowserModule,AgmCoreModule.forRoot({
