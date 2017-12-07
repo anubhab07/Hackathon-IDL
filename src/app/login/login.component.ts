@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
           this.user=usr;
           sessionStorage.setItem('user',this.user.name);
           this._userData.userId=this.user.userId;
+          console.log( this._userData.userId)
         }
       });
       if(flag==1){

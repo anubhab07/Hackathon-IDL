@@ -1,35 +1,35 @@
 <div class="container" *ngIf="orderNumbers.length>0 && !isCancelled">
-  <div>
-    <b> Please Select an Order to cancel</b>
-  </div>
-  <div>
-    <select [(ngModel)]="orderNumber" (ngModelChange)="setOrderNumber($event,orderNums.value)" #orderNums>
+    <div>
+        <b> Please Select an Order to cancel</b>
+    </div>
+    <div>
+        <select [(ngModel)]="orderNumber" (ngModelChange)="setOrderNumber($event,orderNums.value)" class="form-control-sm" #orderNums>
           <option>--select--</option>
-           <option *ngFor="let oId of orderNumbers">{{oId}}</option>
-          </select>
-  </div>
-  <div class="row text-center  order-container" *ngIf="orderNumber!='' && orderNumber!='--select--'">
-    <div class="col-sm-4">
-      <div><span><b>Order No.</b></span></div>
-      <div><span>{{orderNumber}}</span></div>
+          <option *ngFor="let oId of orderNumbers">{{oId}}</option>
+        </select>
     </div>
-    <div class="col-sm-4">
-      <img [src]="imageUrl" ngClass="pizza-image">
-      <div><b>Margherita</b></div>
-    </div>
-    <div class="col-sm-4 text-center ">
-      <button class="btn btn-primary cancel-order-button" (click)="cancelOrder()">
+    <div class="d-flex align-items-center text-center order-container" *ngIf="orderNumber!='' && orderNumber!='--select--'">
+        <div class="col-sm-4">
+            <div><span><b>Order No.</b></span></div>
+            <div><span>{{orderNumber}}</span></div>
+        </div>
+        <div class="col-sm-4">
+            <img [src]="imageUrl" ngClass="pizza-image">
+            <div><b>Margherita</b></div>
+        </div>
+        <div class="col-sm-4 text-center ">
+            <button class="btn btn-primary cancel-order-button" (click)="cancelOrder()">
       Cancel Order
     </button>
+        </div>
     </div>
-  </div>
 </div>
 <div class="alert alert-info text-center" *ngIf="orderNumbers.length==0">
-  You have not placed any order!
+    You have not placed any order!
 </div>
 <div class="alert alert-warning text-center" *ngIf="isCancelled && isCancellationSuccess">
-  Your order is cancelled. Enjoy cooking!
+    Your order is cancelled. Enjoy cooking!
 </div>
 <div class="alert alert-danger text-center" *ngIf="isCancelled && !isCancellationSuccess">
-  Your order could not be cancelled. You must have Pizza today!
+    Your order could not be cancelled. You must have Pizza today!
 </div>

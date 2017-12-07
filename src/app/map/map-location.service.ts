@@ -10,12 +10,12 @@ declare var google: any;
 @Injectable()
 export class MapLocationService {
 
-  constructor(private _http:Http) { }
-  getLocation() :Observable<Location>{
+  constructor(private _http:Http,private gmapsApi: GoogleMapsAPIWrapper) { }
+  getLocation(orderId) :Observable<Location>{
     return this._http.get("../assets/mockData/mapData.json")
     .map((res:Response)=>res.json());
   }
-  //,private gmapsApi: GoogleMapsAPIWrapper
+  //
   getRemainingDistance(org,dest){
     console.log(org,dest)
       var origin=new google.maps.LatLng(org.latitude,org.longitude)
@@ -33,6 +33,10 @@ export class MapLocationService {
         }
       })
     // })
+  }
+  getAllOrders(userId):Observable<any>{
+    return this._http.get("../assets/mockData/orderData.json")
+    .map((res:Response)=>res.json())
   }
 
 }

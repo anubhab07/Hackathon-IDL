@@ -1,26 +1,28 @@
-
-.pizza-image{
-    width:10vw;
-    height:10vh;
+.pizza-image {
+    width: 10vw;
+    height: 10vh;
 }
-.place-order-button
-{
+
+.place-order-button {
     cursor: pointer
 }
-.button-row
-{
-    padding-top:5vh;
+
+.button-row {
+    padding-top: 5vh;
     position: relative;
 }
 
-
-.order-container{
-    padding-top:30vh;
-    height:50vh;
+.order-container {
+    padding-top: 30vh;
+    height: 50vh;
     margin-left: 0px !important;
 }
 
-.form-inputs{
-    height:5vh!important;
-    width:10vw;
+.form-inputs {
+    height: 5vh!important;
+    width: 10vw;
+}
+
+.submit-button {
+    margin-top: -30px;
 }

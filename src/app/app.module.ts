@@ -5,7 +5,7 @@ import {Http,Response, HttpModule} from "@angular/http";
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { MapLocationService } from './map/map-location.service'
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule,MapsAPILoader,GoogleMapsAPIWrapper } from '@agm/core';
 import { MapDirectionDirective } from './map/map-direction.directive';
 import { PlaceOrderComponent } from './place-order/place-order.component';
 import { RouterModule } from '@angular/router';
@@ -15,7 +15,7 @@ import { routing } from './app.route';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { FetchUserService } from './login/fetch-user.service'
-import {GoogleMapsAPIWrapper} from '@agm/core/services/google-maps-api-wrapper';
+// import {GoogleMapsAPIWrapper} from '@agm/core/services/google-maps-api-wrapper';
 import {PlaceOrderService} from './place-order/place-order.service';
 import {CancelOrderService} from './cancel-order/cancel-order.service';
 
@@ -35,7 +35,7 @@ import {CancelOrderService} from './cancel-order/cancel-order.service';
     }),
     HttpModule,ReactiveFormsModule,FormsModule,routing
   ],
-  providers: [MapLocationService,PlaceOrderService,CancelOrderService,FetchUserService],
+  providers: [MapLocationService,PlaceOrderService,CancelOrderService,FetchUserService,GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

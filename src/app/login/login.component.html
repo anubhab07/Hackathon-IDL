@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" (click)="submitLogin()">Submit</button>
-            <label *ngIf="!isValid" class="alert alert-danger col-md-9">Invalid Credentials</label>
+            <label *ngIf="!isValid" class="text-danger col-md-9">Invalid Credentials</label>
 
         </div>
     </form>
