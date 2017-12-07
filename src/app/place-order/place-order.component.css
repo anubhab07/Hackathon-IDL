@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .pizza-image {
     width: 10vw;
     height: 10vh;
@@ -5,6 +6,16 @@
 
 .place-order-button {
     cursor: pointer
+=======
+.pizza-image{
+    width:10vw;
+    height:10vh;
+}
+.place-order-button
+{
+    cursor: pointer;
+    margin-top: 3vh;
+>>>>>>> d5ca25d8509f6b47f91ae939bf24be8127b94817
 }
 
 .button-row {
@@ -12,6 +23,7 @@
     position: relative;
 }
 
+<<<<<<< HEAD
 .order-container {
     padding-top: 30vh;
     height: 50vh;
@@ -21,6 +33,31 @@
 .form-inputs {
     height: 5vh!important;
     width: 10vw;
+=======
+@media only screen and (max-width: 599px){
+    .order-container{
+    height:50vh;
+}
+}
+
+@media only screen and (min-width: 600px){
+    .order-container{
+    padding-top: 30vh;
+    height:50vh;
+}
+}
+
+.form-inputs{
+    /*height:5vh!important;*/
+    width:10vw;
+    display:inline-block!important;
+}
+.order-header{
+    font-size: 14px;
+}
+.place-order-buffer{
+    height: 20px;   
+>>>>>>> d5ca25d8509f6b47f91ae939bf24be8127b94817
 }
 
 .submit-button {

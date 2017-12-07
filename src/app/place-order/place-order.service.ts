@@ -5,12 +5,18 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class PlaceOrderService {
   locations = [];
+  shippingcosts=[];
   locationURL = "./assets/mockData/locationData.json";
   placeOrderURL = "";
+  shippingCostURL="./assets/mockData/shippingCostData.json"
   constructor(private http: Http) { }
   getLocations() {
     return this.http.get(this.locationURL).map((res: Response) => this.locations = res.json())
 
+  }
+
+  getShippingCosts() {
+    return this.http.get(this.shippingCostURL).map((res: Response) => this.shippingcosts = res.json())
   }
 
   placeOrder(order: Order) {

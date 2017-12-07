@@ -1,0 +1,5 @@
+[
+    {"type":"Bike","cost":50},
+    {"type":"Moped","cost":20},
+    {"type":"Drone","cost":500}
+]
