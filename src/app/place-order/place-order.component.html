@@ -2,11 +2,11 @@
   <div class="row  text-center  order-container" *ngIf="!validOrder">
     <div class="col-sm-2">
       <img [src]="imageUrl" ngClass="pizza-image">
-      <div><b>Margherita</b></div>
+      <div class="order-header"><b>Margherita</b></div>
     </div>
     <div class="col-sm-2 text-center ">
-      <div><b>Quantity:</b></div>
-      <div><select ngClass="form-inputs">
+      <div class="order-header"><b>Quantity Ordered:</b></div>
+      <div><select ngClass="form-inputs" class="form-control">
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -14,19 +14,34 @@
       <option>5</option>
       </select></div>
     </div>
-    <div class="col-sm-3 text-center ">
-      <div><span><b>Delivery Location:</b></span></div>
+    <div class="col-sm-2 text-center ">
+      <div class="order-header"><span><b>Delivery Location:</b></span></div>
       <div>
-        <select ngClass="form-inputs" [(ngModel)]="deliveryLocation" (ngModelChange)="setLocation($event,deliveryLoc.value)" #deliveryLoc>
+        <select ngClass="form-inputs" class="form-control" [(ngModel)]="deliveryLocation" (ngModelChange)="setLocation($event,deliveryLoc.value)"
+          #deliveryLoc>
            <option *ngFor="let loc of deliveryLocations">{{loc}}</option>
           </select>
       </div>
     </div>
-    <div class="col-sm-3 text-center ">
-      <div><b>Mobile Number:</b></div>
-      <div><input type="text" ngClass="form-inputs" [(ngModel)]="mobile" /></div>
+    <div class="col-sm-2 text-center ">
+      <div class="order-header"><b>Delivery Type:</b></div>
+      <div><select ngClass="form-inputs" class="form-control" [(ngModel)]="deliveryType" (ngModelChange)="changeDeliveryType($event,type.value)"
+          #type>
+      <option>Bike</option>
+      <option>Moped</option>
+      <option>Drone</option>
+      </select></div>
+    </div>
+     
+    <div class="col-sm-1 text-center ">
+      <div class="order-header"><b>Shipping Charge:</b></div>
+      <div>Rs.{{shippingCost}}</div>
     </div>
     <div class="col-sm-2 text-center ">
+      <div class="order-header"><b>Mobile Number:</b></div>
+      <div><input type="text" ngClass="form-inputs" class="form-control" [(ngModel)]="mobile" /></div>
+    </div>
+    <div class="col-sm-1 text-center ">
       <button class="btn btn-primary place-order-button" (click)="submitOrder()">
       Place Order
     </button>
