@@ -26,7 +26,7 @@ export class MapComponent implements OnInit {
 
   lat2: number = 20.314481;
   lng2: number = 85.820507;
-  zoom: number = 12;
+  zoom: number = 11;
   maxZoom: 16;
   ngOnInit() {
     this._mapService.getLocation().subscribe(res=>{this.location=res[0];
@@ -37,7 +37,9 @@ export class MapComponent implements OnInit {
       this.inter={longitude: this.intermediateLocation.longitude, latitude: this.intermediateLocation.latitude}
       this.dest={longitude: this.destination.longitude, latitude:this.destination.latitude}
       console.log(this.org,this.dest)
+      this._mapService.getRemainingDistance(this.inter,this.dest);
     })
+    
   }
   displayStatus(marker){
 console.log(marker.status)

@@ -17,6 +17,10 @@
             <label>Password</label>
             <input type="password" class="form-control" formControlName="password" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" (click)="submitLogin()">Submit</button>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" (click)="submitLogin()">Submit</button>
+            <label *ngIf="!isValid" class="alert alert-danger col-md-9">Invalid Credentials</label>
+
+        </div>
     </form>
 </div>

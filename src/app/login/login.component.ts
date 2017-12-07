@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   pass:string="aaa";
   users:User[];
   loginForm;
+  user:User=new User();
+  isValid:boolean=true;
   constructor(private _userData:FetchUserService,private fb:FormBuilder,private router:Router) { }
 
   ngOnInit() {
@@ -43,17 +45,24 @@ export class LoginComponent implements OnInit {
     this._userData.getUsers().subscribe(user=>{
       var flag=0;
 
-      user.forEach(user => {
-        if(user.username==this.loginForm.value.username && user.password==this.loginForm.value.password){
+      user.forEach(usr => {
+        if(usr.username==this.loginForm.value.username && usr.password==this.loginForm.value.password){
           flag=1;
+          this.user=usr;
+          sessionStorage.setItem('user',this.user.name);
+          this._userData.userId=this.user.userId;
         }
       });
       if(flag==1){
         this._userData.auth=true;
+        this.isValid=true;
+        
         this.router.navigate(['/place-order'])
+        
       }
       else{
         this._userData.auth=false;
+        this.isValid=false;
       }
       console.log(flag)
     })

@@ -21,13 +21,13 @@ export class PlaceOrderComponent implements OnInit {
   constructor(private placeOrderService: PlaceOrderService) { }
 
   ngOnInit() {
-    this.placeOrderService.getLocations().subscribe(res => {
-      this.deliveryLocations = res;
-      if (this.deliveryLocations.length > 0) {
-        this.deliveryLocation = this.deliveryLocations[0];
-      }
+    // this.placeOrderService.getLocations().subscribe(res => {
+    //   this.deliveryLocations = res;
+    //   if (this.deliveryLocations.length > 0) {
+    //     this.deliveryLocation = this.deliveryLocations[0];
+    //   }
 
-    })
+    // })
   }
 
   setLocation(loc) {
@@ -42,9 +42,9 @@ export class PlaceOrderComponent implements OnInit {
         this.order.userName = "user1";
         this.order.location = this.deliveryLocation;
         this.order.mobileNumber = this.mobile;
-        this.placeOrderService.placeOrder(this.order).subscribe(order=>{
-          this.orderSuccess=true;
-        });
+        // this.placeOrderService.placeOrder(this.order).subscribe(order=>{
+        //   this.orderSuccess=true;
+        // });
       }
     }
   }

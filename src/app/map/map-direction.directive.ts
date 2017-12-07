@@ -1,4 +1,4 @@
-import {GoogleMapsAPIWrapper} from '@agm/core/services/google-maps-api-wrapper';
+import {GoogleMapsAPIWrapper} from '@agm/core';
 import { Directive,  Input} from '@angular/core';
 declare var google: any;
 @Directive({
@@ -33,7 +33,7 @@ export class MapDirectionDirective {
     })
     var rendererOptions = {
       map: map,
-      suppressMarkers: false,
+      suppressMarkers: true,
       polylineOptions: polylineDotted
     };
     var directionsService = new google.maps.DirectionsService;
