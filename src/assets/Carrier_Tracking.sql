@@ -1,4 +1,13 @@
-
+DROP TABLE USER_MASTER;
+/
+DROP TABLE TRACK_ORDER;
+/
+DROP SEQUENCE SEQ_ORDER_ID;
+/
+Begin
+  Dbms_Scheduler.Drop_Job (Job_Name => 'Update_Tracker_Staging');
+END;
+/
 CREATE TABLE
  USER_MASTER
            ( USER_ID            VARCHAR2(200) 
@@ -31,18 +40,18 @@ CREATE SEQUENCE SEQ_ORDER_ID START WITH 1 MINVALUE 1 INCREMENT BY 1;
   INSERT INTO TRACK_ORDER
    VALUES
         (
-       ,1
+        1
        ,'INFY PATIA'
        ,'JAYADEV VIHAR'
-       ,'20.2997 N'
-       ,'85.8173 E'
+       ,'20.2997'
+       ,'85.8173'
        ,'Order Despahed'
         )
 /
    INSERT INTO TRACK_ORDER
      VALUES
           (
-         ,2
+         2
          ,'INFY PATIA'
          ,'NALCO Square'
          ,'20.3148'
@@ -84,8 +93,6 @@ CREATE SEQUENCE SEQ_ORDER_ID START WITH 1 MINVALUE 1 INCREMENT BY 1;
       );
 /
 COMMIT;
-/
-CREATE SEQUENCE SEQ_ORDER_ID START WITH 1 INCREMENT BY 1 MINVALUE 1;
 /
 --To Insert Record in User Master Table
 create or replace PROCEDURE
@@ -179,7 +186,7 @@ SELECT DELIVERY_TYPE,LOCATION
        THEN
       OPEN P_FETCH_LOC 
                      FOR SELECT 
-                             CURRENT_LOCATION
+                             CURRENT_LOC
                             ,FINAL_DESTINATION
                             ,LONGITUDE
                             ,LATITUDE
@@ -192,7 +199,7 @@ SELECT DELIVERY_TYPE,LOCATION
        THEN
           OPEN P_FETCH_LOC FOR 
                           SELECT 
-                               CURRENT_LOCATION
+                               CURRENT_LOC
                               ,FINAL_DESTINATION 
                           FROM TRACK_ORDER
                          WHERE STEPS=5
@@ -225,7 +232,7 @@ BEGIN
   OPEN P_TRACKE_ORD
               FOR
                    SELECT P_ORD_ID
-                         ,CURRENT_LOCATION
+                         ,CURRENT_LOC
                          ,FINAL_DESTINATION
                          ,LONGITUDE
                          ,LATITUDE,
@@ -239,7 +246,7 @@ BEGIN
                    AND FINAL_DESTINATION=V_LOCATION
               UNION
                    SELECT P_ORD_ID
-                         ,CURRENT_LOCATION
+                         ,CURRENT_LOC
                          ,FINAL_DESTINATION
                          ,LONGITUDE
                          ,LATITUDE,
@@ -253,7 +260,7 @@ BEGIN
                       AND FINAL_DESTINATION=V_LOCATION
             UNION
                   SELECT P_ORD_ID
-                         ,CURRENT_LOCATION
+                         ,CURRENT_LOC
                          ,FINAL_DESTINATION
                          ,LONGITUDE
                          ,LATITUDE,
@@ -277,7 +284,7 @@ END;
 /
 BEGIN
    DBMS_SCHEDULER.create_job (
-     job_name        => 'test_full_job_definition',
+     job_name        => 'Update_Tracker_Staging',
      job_type        => 'PLSQL_BLOCK',
      job_action      => 'BEGIN PRC_UPD_USER_MASTER; END;',
      start_date      => SYSTIMESTAMP,
@@ -286,10 +293,7 @@ BEGIN
  );
  END;
 /
-BEGIN
-PRC_INSERT_USER_MASTER(730398,'PATIA INFOSYS',123456,'BIKE');
-END;
-
-
-
-
+--BEGIN
+--PRC_INSERT_USER_MASTER(730398,'PATIA INFOSYS',123456,'BIKE');
+--END;
+/
