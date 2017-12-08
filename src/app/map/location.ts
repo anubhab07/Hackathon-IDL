@@ -5,4 +5,6 @@ export class Location {
     source:Coordinates;
     destination:Coordinates;
     zoom:number;
+    deliveryMode:string;
+    state:number;
 }

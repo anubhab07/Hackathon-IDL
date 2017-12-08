@@ -1,4 +1,4 @@
-[{
+{
     "orderNumber": 1,
     "lastUpdated": "",
     "source": {
@@ -19,6 +19,7 @@
         "longitude": 85.804442,
         "status": "Delivered"
     },
-    "zoom": 11
-
-}]
+    "zoom": 11,
+    "deliveryMode": "bike",
+    "state": 1
+}

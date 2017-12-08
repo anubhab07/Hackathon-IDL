@@ -1,34 +1,50 @@
-<div class="container" *ngIf="orderIdLst && mapLoaded;else noOrders">
-    <h1>{{title}}</h1>
-    <div class="row">
-        <div class="col-md-6">
-            <label for="orders">Select Order:</label>
-            <select class="form-control-sm" id="orders" [(ngModel)]="selectedOrder" (change)="changeOrderId()">
+<div class="container mt-2" *ngIf="orderIdLst.length>0 && mapLoaded;else noOrders">
+    <div class="col-sm-12 col-md-12">
+        <h1>{{title}}</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="orders">Select Order:</label>
+                <select class="form-control-sm" id="orders" [(ngModel)]="selectedOrder" (change)="changeOrderId()">
                 <option *ngFor="let orderId of orderIdLst" [ngValue]="orderId">{{orderId}}</option>
             </select>
+            </div>
         </div>
-    </div>
-    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false" [clickableIcons]="isScrollWheel">
-        <agm-marker [latitude]="source.latitude" [title]="source.status" [longitude]="source.longitude" [openInfoWindow]="!isScrollWheel" [iconUrl]="'../../assets/images/source.png'">
-            <agm-info-window [disableAutoPan]="false">{{source.status}}</agm-info-window>
-        </agm-marker>
-        <!-- <agm-polyline [geodesic]="true" [strokeColor]="'#0eb7f6'" [polylineDraggable]="true">
-            <agm-polyline-point [latitude]="source.latitude" [longitude]="source.longitude"></agm-polyline-point>
-            <agm-polyline-point [latitude]="destination.latitude" [longitude]="destination.longitude"></agm-polyline-point>
-        </agm-polyline> -->
-        <div agm-directions [origin]="org" [destination]="inter"></div>
-        <agm-marker *ngIf="intermediateLocation" [latitude]="intermediateLocation.latitude" [longitude]="intermediateLocation.longitude" (markerClick)="displayStatus(intermediateLocation)" [title]="intermediateLocation.status" [iconUrl]="'../../assets/images/inTransit.png'">
-            <agm-info-window [disableAutoPan]="false">{{intermediateLocation.status}}</agm-info-window>
-        </agm-marker>
 
-        <agm-marker *ngIf="destination" [latitude]="destination.latitude" [longitude]="destination.longitude" [title]="destination.status" [iconUrl]="destImgUrl" (mouseOver)="displayStatus(destination)">
-            <agm-info-window [disableAutoPan]="false">{{destination.status}}</agm-info-window>
-        </agm-marker>
-        <div agm-directions [origin]="inter" [destination]="dest" [dotted]="dotted"></div>
-        <!-- <agm-marker [latitude]="lat2" [longitude]="lng2"></agm-marker> -->
-    </agm-map>
+        <agm-map [latitude]="source.latitude" [longitude]="source.longitude" [zoom]="zoom" [scrollwheel]="false" [clickableIcons]="isScrollWheel" *ngIf="state>0;else notPrepared">
+            <agm-marker [latitude]="source.latitude" [title]="source.status" [longitude]="source.longitude" [openInfoWindow]="!isScrollWheel" [iconUrl]="sourceImgUrl">
+                <agm-info-window [disableAutoPan]="false">{{source.status}}</agm-info-window>
+            </agm-marker>
+            <agm-polyline [geodesic]="true" [strokeColor]="'#0eb7f6'" [polylineDraggable]="true">
+                <agm-polyline-point [latitude]="source.latitude" [longitude]="source.longitude" *ngIf="location.deliveryMode=='drone';else otherDeliveryOptions"></agm-polyline-point>
+                <agm-polyline-point [latitude]="destination.latitude" [longitude]="destination.longitude"></agm-polyline-point>
+            </agm-polyline>
+            <agm-marker *ngIf="destination" [latitude]="destination.latitude" [longitude]="destination.longitude" [title]="destination.status" [iconUrl]="destImgUrl" (mouseOver)="displayStatus(destination)">
+                <agm-info-window [disableAutoPan]="false">{{destination.status}}</agm-info-window>
+            </agm-marker>
+            <ng-template #otherDeliveryOptions>
+                <div agm-directions [origin]="org" [destination]="inter"></div>
+                <agm-marker *ngIf="intermediateLocation" [latitude]="intermediateLocation.latitude" [longitude]="intermediateLocation.longitude" (markerClick)="displayStatus(intermediateLocation)" [title]="intermediateLocation.status" [iconUrl]="intermediateLocationImgUrl">
+                    <agm-info-window [disableAutoPan]="false">{{intermediateLocation.status}}</agm-info-window>
+                </agm-marker>
+
+
+                <div agm-directions [origin]="inter" [destination]="dest" [dotted]="dotted"></div>
+            </ng-template>
+            <!-- <agm-marker [latitude]="lat2" [longitude]="lng2"></agm-marker> -->
+        </agm-map>
+        <ng-template #notPrepared>
+            <div class="container alert alert-warning mt-2">Your Order is under process</div>
+        </ng-template>
+    </div>
+    <div class="col-sm-12 col-md-12 text-success mt-2" *ngIf="false;else remTime">
+        <p>Estimated time: {{remainingTime}}</p>
+        <p>Remaining time: {{remainingDistance}}</p>
+    </div>
+    <ng-template #remTime>
+        <p class="col-sm-12">Estimated time: {{timeRemaining}}</p>
+    </ng-template>
 </div>
 
 <ng-template #noOrders>
-    <div class="container alert alert-warning">Please wait for your order...</div>
+    <div class=" container alert alert-warning mt-2 ">You Have no open order</div>
 </ng-template>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,DoCheck } from '@angular/core';
 import {MapLocationService} from "./map-location.service";
 import {FetchUserService} from "../login/fetch-user.service"
 import {Location} from "./location"
@@ -9,25 +9,28 @@ import {Coordinates} from "./coordinates"
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit,DoCheck {
 
-  
   title="Track your order";
   location: Location;
   intermediateLocation:Coordinates=new Coordinates();
   source:Coordinates=new Coordinates();
   destination:Coordinates=new Coordinates;
   isScrollWheel=false
-  lat: number = 20.295971;
-  lng: number = 85.825023;
   org={latitude:0,longitude:0};
   dest={latitude:0,longitude:0};
   inter={latitude:0,longitude:0};
   dotted:boolean=true;
   destImgUrl="";
+  sourceImgUrl="";
+  intermediateLocationImgUrl="";
   orderIdLst=[];
   selectedOrder="";
   mapLoaded=false;
+  remainingDistance=""
+  remainingTime="";
+  timeRemaining=0;
+  state=0;
 
   zoom: number = 11;
   maxZoom: 16;
@@ -48,8 +51,9 @@ export class MapComponent implements OnInit {
 
   getMapData(orderId){
     console.log(orderId)
-    this._mapService.getLocation(orderId).subscribe(res=>{this.location=res[0];
+    this._mapService.getLocationData(orderId).subscribe(res=>{this.location=res;
       this.intermediateLocation=this.location.intermediateLocation;
+      this.state=this.location.state;
       this.source=this.location.source;
       this.destination=this.location.destination;
       this.org={longitude: this.source.longitude, latitude:this.source.latitude}
@@ -57,16 +61,39 @@ export class MapComponent implements OnInit {
       this.dest={longitude: this.destination.longitude, latitude:this.destination.latitude}
       console.log(this.org,this.dest);
       if(this.inter.longitude==this.dest.longitude && this.inter.latitude==this.inter.longitude){
-        this.destImgUrl="../../assets/images/destination.png"
+        this.destImgUrl="../../assets/images/delivered.png"
       }
       else{
-        this.destImgUrl="../../assets/images/destination2.png"
+        this.destImgUrl="../../assets/images/userLocation.png"
+      }
+      this.sourceImgUrl="../../assets/images/source.png";
+
+      if(this.location.deliveryMode=="bike"||this.location.deliveryMode=="mopet"){
+        this.intermediateLocationImgUrl='../../assets/images/deliveryTruck.png';
+      }
+      else if(this.location.deliveryMode=="drone"){
+        this.destImgUrl="../../assets/images/drone.png";        
       }
       this.mapLoaded=true
+      this.remainingDistance=this._mapService.remainingDistance;
+      this.remainingTime=this._mapService.remainingTime;
+      this.timeRemaining=5-this.state;
+      setTimeout(()=>{
+        this.getMapData(this.selectedOrder)
+      }, 3000);
       //this._mapService.getRemainingDistance(this.inter,this.dest);
     })
   }
+  // setTimeout(()=>{
+  //   this.messageSuccess = false;
+  // },3000)
+  
 
+
+  ngDoCheck(){
+    this.remainingDistance=this._mapService.remainingDistance;
+    this.remainingTime=this._mapService.remainingTime
+  }
   displayStatus(marker){
     console.log(marker.status)
   }
@@ -74,5 +101,7 @@ export class MapComponent implements OnInit {
   changeOrderId(){
     this.getMapData(this.selectedOrder)
   }
+
+  
 
 }
