@@ -11,3 +11,7 @@
 .cancel-order-button {
     cursor: pointer
 }
+
+.cancel-container {
+    margin-top: 70px;
+}

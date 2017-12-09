@@ -68,10 +68,10 @@ export class MapComponent implements OnInit,DoCheck {
       }
       this.sourceImgUrl="../../assets/images/source.png";
 
-      if(this.location.deliveryMode=="bike"||this.location.deliveryMode=="mopet"){
+      if(this.location.deliveryMode.toLowerCase()=="bike"||this.location.deliveryMode.toLowerCase()=="mopet"){
         this.intermediateLocationImgUrl='../../assets/images/deliveryTruck.png';
       }
-      else if(this.location.deliveryMode=="drone"){
+      else if(this.location.deliveryMode.toLowerCase()=="drone"){
         this.destImgUrl="../../assets/images/drone.png";        
       }
       this.mapLoaded=true

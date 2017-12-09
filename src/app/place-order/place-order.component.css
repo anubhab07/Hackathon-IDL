@@ -14,13 +14,15 @@
 
 .place-order-button {
     cursor: pointer;
-    margin-top: 3vh;
+    /* margin-top: 3vh; */
 }
 
+
+/* 
 .button-row {
     padding-top: 5vh;
     position: relative;
-}
+} */
 
 .order-container {
     padding-top: 30vh;
@@ -47,7 +49,7 @@
 }
 
 .form-inputs {
-    /*height:5vh!important;*/
+    height: 5vh!important;
     width: 10vw;
     display: inline-block!important;
 }
