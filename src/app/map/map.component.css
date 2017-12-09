@@ -1,3 +1,11 @@
 agm-map {
     height: 65vh;
 }
+
+.trackOrderContainer {
+    margin-top: 40px !important;
+}
+
+.orderDropdown {
+    float: right;
+}

@@ -11,7 +11,7 @@ import {Coordinates} from "./coordinates"
 })
 export class MapComponent implements OnInit,DoCheck {
 
-  title="Track your order";
+  title="Track your Order";
   location: Location;
   intermediateLocation:Coordinates=new Coordinates();
   source:Coordinates=new Coordinates();

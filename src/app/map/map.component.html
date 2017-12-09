@@ -1,8 +1,10 @@
-<div class="container mt-2" *ngIf="orderIdLst.length>0 && mapLoaded;else noOrders">
+<div class="container trackOrderContainer mt-5" *ngIf="orderIdLst.length>0 && mapLoaded;else noOrders">
     <div class="col-sm-12 col-md-12">
-        <h1>{{title}}</h1>
-        <div class="row">
-            <div class="col-md-6">
+        <br>
+        <div class="row d-flex justify-content-between">
+            <h3 class="col-md-6">{{title}}</h3>
+
+            <div class="col-md-6 orderDropdown m1-auto">
                 <label for="orders">Select Order:</label>
                 <select class="form-control-sm" id="orders" [(ngModel)]="selectedOrder" (change)="changeOrderId()">
                 <option *ngFor="let orderId of orderIdLst" [ngValue]="orderId">{{orderId}}</option>
@@ -41,7 +43,7 @@
         <p>Remaining time: {{remainingDistance}}</p>
     </div>
     <ng-template #remTime>
-        <p class="col-sm-12">Estimated time: {{timeRemaining}}</p>
+        <p class="col-sm-12 text-success">Estimated time: {{timeRemaining}} mins</p>
     </ng-template>
 </div>
 
