@@ -19,7 +19,8 @@ export class MapDirectionDirective {
       var lineSymbol = {
         path: google.maps.SymbolPath.CIRCLE,
         fillOpacity: 1,
-        scale: 3
+        scale: 3,
+        
     };
   
     var polylineDotted = new google.maps.Polyline({
@@ -35,7 +36,8 @@ export class MapDirectionDirective {
     var rendererOptions = {
       map: map,
       suppressMarkers: true,
-      polylineOptions: polylineDotted
+      polylineOptions: polylineDotted,
+      preserveViewport: true
     };
     var directionsService = new google.maps.DirectionsService;
     if(this.dotted){

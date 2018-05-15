@@ -1,8 +1,9 @@
-import { Component, OnInit,DoCheck } from '@angular/core';
+import { Component, OnInit,DoCheck,OnDestroy  } from '@angular/core';
 import {MapLocationService} from "./map-location.service";
 import {FetchUserService} from "../login/fetch-user.service"
 import {Location} from "./location"
 import {Coordinates} from "./coordinates"
+// import { clearInterval } from 'timers';
 
 @Component({
   selector: 'app-map',
@@ -31,6 +32,7 @@ export class MapComponent implements OnInit,DoCheck {
   remainingTime="";
   timeRemaining=0;
   state=0;
+  timer;
 
   zoom: number = 11;
   maxZoom: 16;
@@ -78,7 +80,7 @@ export class MapComponent implements OnInit,DoCheck {
       this.remainingDistance=this._mapService.remainingDistance;
       this.remainingTime=this._mapService.remainingTime;
       this.timeRemaining=5-this.state;
-      setTimeout(()=>{
+      this.timer=setTimeout(()=>{
         this.getMapData(this.selectedOrder)
       }, 3000);
       //this._mapService.getRemainingDistance(this.inter,this.dest);
@@ -101,7 +103,9 @@ export class MapComponent implements OnInit,DoCheck {
   changeOrderId(){
     this.getMapData(this.selectedOrder)
   }
-
+  ngDestroy(){
+    clearInterval(this.timer)
+  }
   
 
 }
